@@ -43,7 +43,7 @@ public class AccountController {
 				return new ResponseEntity<>("Username is already in use", HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		} else {
-			return new ResponseEntity<>("Password does not match", HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>("Given passwords doesent match", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }

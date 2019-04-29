@@ -44,8 +44,4 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 		AuthenticationService.addToken(res, auth.getName());
 	}
 	
-	
-	
-	
-	
 }

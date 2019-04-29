@@ -34,13 +34,23 @@ public class RestApplication {
 	@Bean
 	CommandLineRunner runner() {
 		return args -> {
-			User user = new User("admin", "$2a$04$IEbRJGn1avY3xT7mCB2Qkusm2CN6RnPWGX6lXqD923MlTRR3Vuq2u", "ADMIN", "testi@testi.fi");
+			
+			User user = new User("rolli", "$2a$04$IEbRJGn1avY3xT7mCB2Qkusm2CN6RnPWGX6lXqD923MlTRR3Vuq2u", "OWNER", "testi@testi.fi");
 			repository.save(user);
-			CommunityHub hub = new CommunityHub("TestingHub", new Date());
+			User user2 = new User("user", "$2a$06$7U.M8ba1Hpg/41OiapCTquxJv5A7vsxSUhSRy33wlgqGOjoHJE8ca", "USER", "user@testi.fi");
+			repository.save(user2);
+			
+			
+			CommunityHub hub = new CommunityHub("TestingHub",  new Date(), "no");
 			chrepository.save(hub);
+			CommunityHub hub2 = new CommunityHub("UserHub", new Date(), "no");
+			chrepository.save(hub2);
+			
 			
 			Member member = new Member(new JoinedMemberKey(user.getId(), hub.getChId()), user, hub, "admin");
 			mrepository.save(member);
+			Member member2 = new Member(new JoinedMemberKey(user2.getId(), hub2.getChId()), user2, hub2, "admin");
+			mrepository.save(member2);
 		};
 	}
 

@@ -22,9 +22,9 @@ public class AuthFilter extends GenericFilterBean {
 		throws IOException, ServletException {
 		
 		Authentication auth = AuthenticationService.getAuthentication((HttpServletRequest)req);
-		
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		chain.doFilter(req, res);
 		
 	}
+
 }

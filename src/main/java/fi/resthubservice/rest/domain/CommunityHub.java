@@ -24,6 +24,9 @@ public class CommunityHub {
 	private String hubName;
 	
 	@Column(nullable = false)
+	private String isPrivate;
+	
+	@Column(nullable = false)
 	private Date createdDate;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "communityhub")
@@ -36,10 +39,11 @@ public class CommunityHub {
 	}
 
 
-	public CommunityHub(String hubName, Date createdDate) {
+	public CommunityHub(String hubName, Date createdDate, String isPrivate) {
 		super();
 		this.hubName = hubName;
 		this.createdDate = createdDate;
+		this.isPrivate = isPrivate;
 	}
 
 
@@ -60,6 +64,15 @@ public class CommunityHub {
 
 	public void setHubName(String hubName) {
 		this.hubName = hubName;
+	}
+	
+	public String isPrivate() {
+		return isPrivate;
+	}
+
+
+	public void setPrivate(String isPrivate) {
+		this.isPrivate = isPrivate;
 	}
 
 

@@ -11,16 +11,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 public class AuthenticationService {
-	static final long EXPIRATIONTIME = 864_000_000; //1day in mseconds
-	static final String SIGNINGKEY = "";
+	static final long EXPIRATIONTIME = 864_000_000; // Time in ms
+	static final String SIGNINGKEY = "SecretKeyForTheDoomRolliTheBaiterMaisterFuckerTheBestTheRandomTheGodGamerTheHackerMan987456321TheHolostTheManly";
 	static final String PREFIX = "Bearer";
 	
 	// After Successful login software gives user token to identify
 	static public void addToken(HttpServletResponse res, String username) {
 		String token = Jwts.builder().setSubject(username)
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
+				.signWith(SignatureAlgorithm.HS512, SIGNINGKEY)
 				.compact();
 		res.addHeader("Authorization", PREFIX + " " + token);
 		res.addHeader("Access-Control-Expose-Headers", "Authorization");
@@ -41,4 +43,5 @@ public class AuthenticationService {
 		}
 		return null;
 	}
+	
 }
